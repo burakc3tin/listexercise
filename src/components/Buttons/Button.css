@@ -1,0 +1,12 @@
+.button{
+
+    padding: 12px 15px 12px 15px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #fff;
+    background-color: rgb(32, 150, 234);
+    cursor: pointer;
+    font-weight: bold;
+    border: 1.5px solid rgb(148, 145, 145);
+    border-radius: 8px;
+}
