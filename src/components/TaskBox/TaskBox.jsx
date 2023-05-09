@@ -1,14 +1,12 @@
-import React,{ useState,useEffect, createContext, useContext } from 'react'
+import React,{ useState,useEffect, useContext } from 'react'
 import './TaskBox.css'
 import {AktifContext} from '../TaskManagement/TaskManagement';
 
 
-
- 
-export default function TaskBox({testfonk,aktiflikFonksiyon,deleteAllItems,addNewTask,changeCheckbox,checkboxtext,buttontext,taskArray,checkboxvalue}) {
+export default function TaskBox({deleteAllItems,addNewTask,changeCheckbox,checkboxtext,buttontext,taskArray,checkboxvalue}) {
   const [selectAll, setSelectAll] = useState(false);
   const [shuffle, setShuffle] = useState(false);
-  const {aktifMi,setAktifMi,aktifMiDelete,setAktifMiDelete} = useContext(AktifContext);
+  const {setAktifMi,setAktifMiDelete} = useContext(AktifContext);
 
    
   // Tüm görevlerin seçim durumunu ayarla
@@ -23,36 +21,26 @@ export default function TaskBox({testfonk,aktiflikFonksiyon,deleteAllItems,addNe
    // Tek bir görevin seçim durumunu ayarla
   const handleTaskChange = (event) => {
 
-    
-   
     const taskId = event.target.value;
     const allCompletedFalse = taskArray.every(tasks => tasks.completed === false);
 
-   
+   //Tüm checkboxlar işaretli değil ise
      if(allCompletedFalse===true){
- 
-      
       const updatedTasks = taskArray.map((task) =>
       task.title === taskId ? { ...task, completed: true } : task)
       changeCheckbox(updatedTasks);
        taskArray.map((task)=>{
        task.title === taskId ?addNewTask(task):null
       })
-       
-
      }
      else{
       const updatedTasks = taskArray.map((task) =>
       task.title === taskId ? { ...task, completed: false } : task)
       changeCheckbox(updatedTasks);
-     
      }
-     
-     
   };
 
- 
-
+  //Checkboxları random karıştır
   useEffect(() => {
     if (shuffle) {
       changeCheckbox((items) => [...items].sort(() => Math.random() - 0.5));
@@ -60,24 +48,20 @@ export default function TaskBox({testfonk,aktiflikFonksiyon,deleteAllItems,addNe
     }
   }, [shuffle]);
 
+  //Checkbox işaretli ise butonu aktif et
  useEffect(()=>{
- 
   taskArray.map((task) =>
   task.completed === true ? setAktifMi(false) : null)
-
   const everyFalse = taskArray.every(tasks => tasks.completed === false);
   everyFalse===true?setAktifMi(true):null
-  
   },[taskArray,setAktifMi])
 
+  //Checkbox işaretli ise butonu aktif et
   useEffect(()=>{
- 
     taskArray.map((task) =>
     task.completed === true ? setAktifMiDelete(false) : null)
-  
     const everyFalse = taskArray.every(tasks => tasks.completed === false);
     everyFalse===true?setAktifMiDelete(true):null
-    
     },[taskArray,setAktifMiDelete])
 
   return (
@@ -85,44 +69,42 @@ export default function TaskBox({testfonk,aktiflikFonksiyon,deleteAllItems,addNe
     <div className="taskbox">
     
     <div className='topbar'>
-        <div> 
-
+        <div>   
             <div className='topbarcheckboxlabel'>
     <input type="checkbox"
     checked={selectAll}
     onChange={handleSelectAll}
     id={checkboxvalue} name={checkboxvalue} value={checkboxtext}/>
-<label for={checkboxvalue}>{checkboxtext}</label></div>
-</div>
-<button onClick={() => {
-  if(buttontext==="Shuffle")
-  {  setShuffle(true)
-  }
-  else{
+    <label for={checkboxvalue}>{checkboxtext}</label></div>
+       </div>
+    <button onClick={() => {
+    if(buttontext==="Shuffle")
+    {  setShuffle(true)
+    }
+    else{
     deleteAllItems()
-  }
-}} className='taskboxbutton'>{buttontext}</button>
-</div>
-
-<hr />
-<div className='taskboxcontent'> 
-
- <ul>
-  {taskArray.map((task, index) => (
-    <li key={task.id}>
-      <div className='listitem'>
-        <input type="checkbox" id={`val${task.value}`} 
-        checked={task.completed}
-        onChange={handleTaskChange}
- 
-        name={`val${task.value}`} value={task.title}/>
-        <label htmlFor={`val${task.value}`}>{task.title}</label>
-      </div>
-    </li>
-  ))}
-</ul>
- </div>
+    }
+     }} className='taskboxbutton'>{buttontext}</button>
     </div>
- 
+
+    <hr />
+    <div className='taskboxcontent'> 
+
+    <ul>
+    {taskArray.map((task, index) => (
+      <li key={task.id}>
+        <div className='listitem'>
+          <input type="checkbox" id={`val${task.value}`} 
+          checked={task.completed}
+          onChange={handleTaskChange}
+  
+          name={`val${task.value}`} value={task.title}/>
+          <label htmlFor={`val${task.value}`}>{task.title}</label>
+        </div>
+      </li>
+      ))}
+    </ul>
+    </div>
+        </div>
   )
 }

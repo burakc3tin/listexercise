@@ -6,44 +6,31 @@
     max-height: auto;
     border:1.3px solid rgb(205, 194, 194);
     margin:20px;
-    
-  
 }
-
- 
-
 .topbar{
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
 }
-
 .topbar input[type="checkbox"]{
     margin-left: 8px;
-    margin-right: 3px;
-     
+    margin-right: 3px;  
  }
- 
-
  input[type="checkbox"] {
     filter:   brightness(90%) ;
     width: 20px;
     height: 15px;
     }
-
- 
 .taskboxbutton{
     padding: 4px;
     padding-right: 8px;
     margin-right: 14px;
-     border: 1.8px solid rgb(156, 152, 152);
-     cursor: pointer;
+    border: 1.8px solid rgb(156, 152, 152);
+    cursor: pointer;
 }
-
 ul li {
     list-style-type: none;
 }
-
 .listitem{
     border: 1.8px solid rgb(170, 159, 159);
     margin: 8px;
@@ -57,53 +44,40 @@ ul li {
     align-items: center;
 }
 .taskboxcontent{
-  overflow-y: scroll;
-  max-height: 360px;
-  padding: 10px;
+    overflow-y: scroll;
+    max-height: 360px;
+    padding: 10px;
 }
-
 .taskboxcontent input[type="checkbox"]{
-  
     margin-right: 13px;
-     
  }
-
 ::-webkit-scrollbar {
     width: 16px;
-  
-  
-    
   }
 ::-webkit-scrollbar-thumb {
     background-color: #98DFFC;
     background-clip: padding-box;
     border-radius: 5px;
-   
     border: 0.05em solid #eeeeee;
   }
-  
-
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: #ffffff;
     border-left: 1.6px solid #BEBEBE;
     border-top: 1.6px solid #BEBEBE;
     border-bottom: 1.6px solid #BEBEBE;
-
+    }
+::-webkit-scrollbar-button {
+    background-size: 100%;
+    height: 14px;
+    width: 10px;
+    border-left:1.6px solid #BEBEBE;
+    }
+::-webkit-scrollbar-button:vertical:increment {
+    background-image: url(https://i.hizliresim.com/auwbvy1.png);
     }
     
-
-    ::-webkit-scrollbar-button {
-        background-size: 100%;
-        height: 14px;
-        width: 10px;
-        border-left:1.6px solid #BEBEBE;
-    }
-    ::-webkit-scrollbar-button:vertical:increment {
-        background-image: url(https://i.hizliresim.com/auwbvy1.png);
-    }
-    
-    ::-webkit-scrollbar-button:vertical:decrement {
-        background-image: url(https://i.hizliresim.com/k0ceij5.png);
+::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url(https://i.hizliresim.com/k0ceij5.png);
     }
 
   

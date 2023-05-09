@@ -1,15 +1,14 @@
-import React,{useState,createContext, useContext} from 'react'
+import React,{useContext} from 'react'
 import './Button.css'
 import {AktifContext} from '../TaskManagement/TaskManagement';
  
-export default function Button({  text,val,addDeleteCheckbox,removeItem}) {
-  const {aktifMi,setAktifMi,aktifMiDelete,setAktifMiDelete} = useContext(AktifContext);
+export default function Button({text,val,addDeleteCheckbox,removeItem}) {
+
+  const {aktifMi,aktifMiDelete} = useContext(AktifContext);
 
   const addDeleteTable = () => {
-
     addDeleteCheckbox(val)
      }
-
 
   return (
     text==="Add"?
@@ -23,10 +22,10 @@ export default function Button({  text,val,addDeleteCheckbox,removeItem}) {
       removeItem()
     }
   }}
-  
   className='button'>
       {text}
-  </button> :
+  </button> 
+  :
    <button 
    disabled={aktifMiDelete}
     onClick={()=>{
@@ -37,7 +36,6 @@ export default function Button({  text,val,addDeleteCheckbox,removeItem}) {
      removeItem()
    }
  }}
- 
  className='button'>
      {text}
  </button>
